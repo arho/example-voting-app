@@ -1,4 +1,4 @@
-name: Vote Branch Build
+name: Worker Branch Build
 
 on:
   pull_request:

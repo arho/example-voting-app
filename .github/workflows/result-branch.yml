@@ -1,4 +1,4 @@
-name: Vote Branch Build
+name: Result Branch Build
 
 on:
   pull_request:
