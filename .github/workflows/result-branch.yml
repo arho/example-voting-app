@@ -41,7 +41,6 @@ jobs:
           images: ${{ secrets.DOCKER_HUB_USERNAME }}/$IMAGE_NAME
           tags: |
             type=ref,event=pr
-            type=ref,event=push
             type=sha
 
       -
