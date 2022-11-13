@@ -85,7 +85,7 @@ jobs:
       name: Deploy to the Cluster
       uses: azure/k8s-deploy@v4
       with:
-        namespace: hardcoded-ns
+        namespace: ${{ github.sha }}
         manifests: |
           ./kube-deployment.yml
         # images: |
