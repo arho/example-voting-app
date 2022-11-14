@@ -1,4 +1,4 @@
-name: Master Branch Merge
+name: Vote Master Branch Merge
 
 on:
   push:
@@ -88,7 +88,7 @@ jobs:
       uses: infraway/create-dns-record@v2.0
       with:
         type: "CNAME"
-        name: "${{ github.sha }}-vote.${{ secrets.CF_ZONE_ADDRESS }}"
+        name: "production-vote.${{ secrets.CF_ZONE_ADDRESS }}"
         content: "${{ secrets.CF_ZONE_ADDRESS }}"
         ttl: 1
         proxied: true
@@ -99,7 +99,7 @@ jobs:
       uses: infraway/create-dns-record@v2.0
       with:
         type: "CNAME"
-        name: "${{ github.sha }}-result.${{ secrets.CF_ZONE_ADDRESS }}"
+        name: "production-result.${{ secrets.CF_ZONE_ADDRESS }}"
         content: "${{ secrets.CF_ZONE_ADDRESS }}"
         ttl: 1
         proxied: true
