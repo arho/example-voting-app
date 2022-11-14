@@ -75,7 +75,7 @@ jobs:
 
     - 
       name: Create DNS Record for Vote
-      uses: kriasoft/create-dns-record@v1
+      uses: infraway/create-dns-record@v2.0
       with:
         type: "CNAME"
         name: "${{ github.sha }}-vote.${{ secrets.CF_ZONE_ADDRESS }}"
@@ -86,7 +86,7 @@ jobs:
         zone: ${{ secrets.CF_ZONE_ID }}
     - 
       name: Create DNS Record for Result
-      uses: kriasoft/create-dns-record@v1
+      uses: infraway/create-dns-record@v2.0
       with:
         type: "CNAME"
         name: "${{ github.sha }}-result.${{ secrets.CF_ZONE_ADDRESS }}"
