@@ -146,7 +146,7 @@ spec:
     spec:
       containers:
       - name: result
-        image: dockersamples/examplevotingapp_result:before
+        image: arho0/result:latest
         ports:
         - containerPort: 80
           name: result
@@ -185,7 +185,7 @@ spec:
     spec:
       containers:
       - name: vote
-        image: dockersamples/examplevotingapp_vote:before
+        image: arho0/vote:latest
         ports:
         - containerPort: 80
           name: vote
@@ -220,7 +220,7 @@ spec:
         app: worker
     spec:
       containers: 
-      - image: dockersamples/examplevotingapp_worker
+      - image: arho0/worker:latest
         name: worker
 ---
 apiVersion: networking.k8s.io/v1
