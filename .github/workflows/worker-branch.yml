@@ -5,7 +5,7 @@ on:
     branches:
       - "master"
     paths:
-      - "vote/**"
+      - "worker/**"
       - ".github/workflows/worker-branch.yml"
 
   workflow_dispatch:
@@ -68,10 +68,9 @@ jobs:
         namespace: ${{ github.sha }}
         manifests: |
           ./kube-deployment.yml
-        # images: |
-        #   ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-    #Create a new Kubernetes Namespace
-    #Deploy App Components to the Namespace
+        images: |
+          ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
 
     - 
       name: Create DNS Record for Vote

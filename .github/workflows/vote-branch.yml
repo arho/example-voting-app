@@ -52,3 +52,56 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+    -
+      name: Set Context
+      uses: azure/k8s-set-context@v3
+      with:
+        method: service-account
+        k8s-url: ${{ secrets.CLUSTER_ADDR }}
+        k8s-secret: ${{ secrets.CLUSTER_SECRET }}
+    -
+      name: Checkout Source
+      uses: actions/checkout@v3
+    - 
+      name: Replace GITHUB_SHA in Manifest
+      run: sed -i "s/GITHUB_SHA/${{ github.sha }}/g" ./kube-deployment.yml
+
+    -
+      name: Deploy to the Cluster
+      uses: azure/k8s-deploy@v4
+      with:
+        namespace: ${{ github.sha }}
+        manifests: |
+          ./kube-deployment.yml
+        images: |
+          ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+
+    - 
+      name: Create DNS Record for Vote
+      uses: infraway/create-dns-record@v2.0
+      with:
+        type: "CNAME"
+        name: "${{ github.sha }}-vote.${{ secrets.CF_ZONE_ADDRESS }}"
+        content: "${{ secrets.CF_ZONE_ADDRESS }}"
+        ttl: 1
+        proxied: true
+        token: ${{ secrets.CF_API_TOKEN }}
+        zone: ${{ secrets.CF_ZONE_ID }}
+    - 
+      name: Create DNS Record for Result
+      uses: infraway/create-dns-record@v2.0
+      with:
+        type: "CNAME"
+        name: "${{ github.sha }}-result.${{ secrets.CF_ZONE_ADDRESS }}"
+        content: "${{ secrets.CF_ZONE_ADDRESS }}"
+        ttl: 1
+        proxied: true
+        token: ${{ secrets.CF_API_TOKEN }}
+        zone: ${{ secrets.CF_ZONE_ID }}
