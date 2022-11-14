@@ -88,7 +88,7 @@ jobs:
       uses: infraway/create-dns-record@v2.0
       with:
         type: "CNAME"
-        name: "production-vote.${{ secrets.CF_ZONE_ADDRESS }}"
+        name: "votingprod-vote.${{ secrets.CF_ZONE_ADDRESS }}"
         content: "${{ secrets.CF_ZONE_ADDRESS }}"
         ttl: 1
         proxied: true
@@ -99,7 +99,7 @@ jobs:
       uses: infraway/create-dns-record@v2.0
       with:
         type: "CNAME"
-        name: "production-result.${{ secrets.CF_ZONE_ADDRESS }}"
+        name: "votingprod-result.${{ secrets.CF_ZONE_ADDRESS }}"
         content: "${{ secrets.CF_ZONE_ADDRESS }}"
         ttl: 1
         proxied: true
