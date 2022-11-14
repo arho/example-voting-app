@@ -73,3 +73,25 @@ jobs:
     #Create a new Kubernetes Namespace
     #Deploy App Components to the Namespace
 
+    - 
+      name: Create DNS Record for Vote
+      uses: kriasoft/create-dns-record@v1
+      with:
+        type: "CNAME"
+        name: "${{ github.sha }}-vote.${{ secrets.CF_ZONE_ADDRESS }}"
+        content: "${{ secrets.CF_ZONE_ADDRESS }}"
+        ttl: 1
+        proxied: true
+        token: ${{ secrets.CF_API_TOKEN }}
+        zone: ${{ secrets.CF_ZONE_ID }}
+    - 
+      name: Create DNS Record for Result
+      uses: kriasoft/create-dns-record@v1
+      with:
+        type: "CNAME"
+        name: "${{ github.sha }}-result.${{ secrets.CF_ZONE_ADDRESS }}"
+        content: "${{ secrets.CF_ZONE_ADDRESS }}"
+        ttl: 1
+        proxied: true
+        token: ${{ secrets.CF_API_TOKEN }}
+        zone: ${{ secrets.CF_ZONE_ID }}
