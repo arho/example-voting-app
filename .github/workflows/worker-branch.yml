@@ -57,30 +57,10 @@ jobs:
     -
       name: Checkout Source
       uses: actions/checkout@v3
-    -
-      name: Replace Kubernetes Namespace with SHA
-      uses: jacobtomlinson/gha-find-replace@v2
-      with:
-        find: "DEST_NAMESPACE"
-        replace: "${{ github.sha }}"
-        include: "./kube-deployment.yml"
-        regex: true
-    -
-      name: Replace Kubernetes Namespace with SHA
-      uses: jacobtomlinson/gha-find-replace@v2
-      with:
-        find: "VOTE_ADDRESS"
-        replace: "${{ github.sha }}"
-        include: "./kube-deployment.yml"
-        regex: true
-    -
-      name: Replace Kubernetes VOTE ADDRESS with SHA
-      uses: jacobtomlinson/gha-find-replace@v2
-      with:
-        find: "RESULT_ADDRESS"
-        replace: "${{ github.sha }}"
-        include: "./kube-deployment.yml"
-        regex: true
+    - 
+      name: Replace GITHUB_SHA in Manifest
+      run: sed -i "s/GITHUB_SHA/${{ github.sha }}/g" ./kube-deployment.yml
+
     -
       name: Deploy to the Cluster
       uses: azure/k8s-deploy@v4
