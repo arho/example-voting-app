@@ -35,7 +35,7 @@ Setup
 ---------
 1. Setup the Cluster with Terraform.
 2. Use `az aks get-credentials` to get the credentials (AKS Only Ofcourse.)
-2. Use `kubectl config view --minify -o 'jsonpath={.clusters[0].cluster.server}'` to get Cluster Details.
+2. Use `kubectl config view --minify -o 'jsonpath={.clusters[0].cluster.server}'` to get Cluster Connection Details.
 3. Apply serviceaccount.yml
 4. Get information for the github-actions service account and add it as a secret for deployment phase.
 5. Configure CloudFlare Secrets
