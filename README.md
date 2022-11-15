@@ -31,7 +31,15 @@ Deployment
 
 ![Logs](containerinfo.png)
 
-
+Setup
+---------
+1. Setup the Cluster with Terraform.
+2. Use `az aks get-credentials` to get the credentials (AKS Only Ofcourse.)
+2. Use `kubectl config view --minify -o 'jsonpath={.clusters[0].cluster.server}'` to get Cluster Details.
+3. Apply serviceaccount.yml
+4. Get information for the github-actions service account and add it as a secret for deployment phase.
+5. Configure CloudFlare Secrets
+6. Configure Container Registry Secrets 
 
 Proposed Improvements
 --------------------------
@@ -43,3 +51,5 @@ Proposed Improvements
 6. Employing a deployment strategy such as Canary or Blue/Green Deployment.
 7. Setting resource limits for each container.
 8. Dividing dev/test workloads and production workloads over different clusters.
+9. Probes for containers.
+10. Managing the repo with Terraform for Action secret management. (For example, adding AKS secrets)
