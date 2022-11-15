@@ -23,8 +23,7 @@ resource "random_id" "log_analytics_workspace_name_suffix" {
 resource "azurerm_log_analytics_workspace" "votingapplogs" {
   location            = azurerm_resource_group.votingapp.location
   name                = "votingapp-${random_id.log_analytics_workspace_name_suffix.dec}"
-  resource_group_name = azurerm_resource_group.rg.name
-  sku                 = var.log_analytics_workspace_sku
+  resource_group_name = azurerm_resource_group.votingapp.name
 }
 
 resource "azurerm_log_analytics_solution" "votingapplogscontainers" {
