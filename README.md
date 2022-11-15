@@ -4,7 +4,7 @@ Example Voting App
 
 Based on [dockersamples/example-voting-app](https://github.com/dockersamples/example-voting-app)
 
-Time spent: ~25 Hours
+Time spent: ~25 Hours (4 Hours Th,8 Hours Fr,3 Hours Su, 8 Hours Mo, 2 Hours Tue)
 
 Architecture
 -----
