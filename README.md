@@ -4,7 +4,7 @@ Example Voting App
 
 Based on [dockersamples/example-voting-app](https://github.com/dockersamples/example-voting-app)
 
-Time spent: ~25 Hours (4 Hours Th,8 Hours Fr,3 Hours Su, 8 Hours Mo, 2 Hours Tue)
+Time spent: ~32 Hours (4 Hours Thu,8 Hours Fri,3 Hours Sun, 8 Hours Mon, 2 Hours Tue, [Updates: 3 Hours Thu, 4 Hours Mon])
 
 Architecture
 -----
@@ -33,11 +33,11 @@ Deployment
 
 Setup
 ---------
-1. Setup the Cluster with Terraform.
-2. Use `az aks get-credentials` to get the credentials (AKS Only Ofcourse.)
+1. Setup the Cluster and Redis Cache with Terraform.
+2. Use `az aks get-credentials` to get the credentials
 2. Use `kubectl config view --minify -o 'jsonpath={.clusters[0].cluster.server}'` to get Cluster Connection Details.
 3. Apply serviceaccount.yml
-4. Get information for the github-actions service account and add it as a secret for deployment phase.
+4. Get information for the github-actions service account and add it as a secret for deployment phase. (Using `kubectl get secret github-actions-token`)
 5. Configure CloudFlare Secrets
 6. Configure Container Registry Secrets 
 
