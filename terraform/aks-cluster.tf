@@ -28,9 +28,9 @@ resource "azurerm_kubernetes_cluster" "votingapp" {
   http_application_routing_enabled = true
   dns_prefix                       = "votingapp"
   network_profile {
-    service_cidr   = "10.0.10.0/24"
-    network_plugin = "azure"
-    dns_service_ip = "10.0.10.10"
+    service_cidr       = "10.0.10.0/24"
+    network_plugin     = "azure"
+    dns_service_ip     = "10.0.10.10"
     docker_bridge_cidr = "172.17.0.1/16"
   }
 

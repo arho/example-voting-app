@@ -14,8 +14,8 @@ resource "azurerm_redis_cache" "redis-cache" {
   redis_version                 = 6
   subnet_id                     = azurerm_subnet.redis-cache-subnet.id
   public_network_access_enabled = false
-  enable_non_ssl_port = true
-  private_static_ip_address = "10.0.1.25"
+  enable_non_ssl_port           = true
+  private_static_ip_address     = "10.0.1.25"
   redis_configuration {
     enable_authentication = false
   }
