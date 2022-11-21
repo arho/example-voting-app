@@ -19,8 +19,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "votingapp" {
-  name     = "votingapp"
-  location = "West Europe"
+  name     = var.appname
+  location = var.location
 }
 
 

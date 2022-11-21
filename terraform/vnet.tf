@@ -9,9 +9,6 @@ resource "azurerm_virtual_network" "votingapp-vnet" {
   location            = azurerm_resource_group.votingapp.location
   resource_group_name = azurerm_resource_group.votingapp.name
   address_space       = ["10.0.0.0/16", "10.10.0.0/16"]
-  tags = {
-    app = "VotingApp"
-  }
 }
 
 # Redis Cache Subnet
@@ -33,10 +30,3 @@ resource "azurerm_subnet" "aks-subnet" {
   virtual_network_name = azurerm_virtual_network.votingapp-vnet.name
   address_prefixes     = ["10.10.0.0/16"]
 }
-
-# resource "azurerm_subnet" "aks-service-subnet" {
-#   name                 = "aks-cluster-service-subnet"
-#   resource_group_name  = azurerm_resource_group.votingapp.name
-#   virtual_network_name = azurerm_virtual_network.votingapp-vnet.name
-#   address_prefixes     = ["10.0.10.0/24"]
-# }
