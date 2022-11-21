@@ -73,14 +73,14 @@ jobs:
       uses: actions/checkout@v3
     - 
       name: Replace GITHUB_SHA in Manifest
-      run: sed -i "s/GITHUB_SHA/votingprod/g" ./kube-deployment.yml
+      run: sed -i "s/GITHUB_SHA/votingprod/g" ./kube-deployment-prod.yml
     -
       name: Deploy to the Cluster
       uses: azure/k8s-deploy@v4
       with:
         namespace: votingprod
         manifests: |
-          ./kube-deployment.yml
+          ./kube-deployment-prod.yml
         images: |
           ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
     - 
